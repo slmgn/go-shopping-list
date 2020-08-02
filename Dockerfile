@@ -1,13 +1,12 @@
 FROM golang:alpine
 
-# Set necessary environmet variables needed for our image
-ENV GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
-
 # Add Maintainer Info
 LABEL maintainer="Salome Gene <digsach2003b@gmail.com>"
+
+ENV GO111MODULE=on \
+    CGO_ENABLED=1 \
+    GOOS=windows  \
+    GOARCH=amd64
 
 # Move to working directory /build
 WORKDIR /build
@@ -31,7 +30,7 @@ RUN cp /build/main .
 
 
 # Export necessary port
-EXPOSE 3000
+EXPOSE 8080
 
 # Command to run when starting the container
 CMD ["/dist/main"]

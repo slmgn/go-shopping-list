@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"shopping-list/models"
 	"strconv"
 
@@ -15,8 +16,8 @@ import (
 
 func CreateConnection() (*sql.DB, error) {
 
-	//os.Remove("./productos.db")
-	db, err := sql.Open("sqlite3", ":memory:")
+	os.Remove("./productos.db")
+	db, err := sql.Open("sqlite3", "./productos.db")
 
 	sqlStmt := `create table if not exists product (id integer not null primary key, name text, amount int);`
 	_, err = db.Exec(sqlStmt)
